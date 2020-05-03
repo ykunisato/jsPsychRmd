@@ -13,6 +13,8 @@ set_jsPsych <- function (file_name = "task", pavlovia = FALSE){
   # make stimuli directory
   if(!dir.exists(file.path(path, file_name, "stimuli"))){
     dir.create(file.path(path, file_name, "stimuli"), showWarnings = FALSE)
+    file.create(file.path(path, file_name, "stimuli/README_materials.md"), showWarnings = FALSE)
+    writeLines("README about stimuli", file.path(path, file_name, "stimuli/README_materials.md"))
   }
   # make jsPsych directory
   dir_jsPsych <- "jspsych-6.1.0"
