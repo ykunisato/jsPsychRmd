@@ -6,7 +6,7 @@ output:
     mathjax: null
     highlight: null
     theme: null
-    css: jspsych-6.1.0/css/jspsych.css
+    css: lib/vendors/jspsych-6.1.0/css/jspsych.css
 ---
 
 ```{r setup, include=FALSE}
@@ -30,9 +30,10 @@ tags$script(type="text/javascript", src='lib/vendors/jspsych-6.1.0/plugins/jspsy
     var pavlovia_init = {
       type: "pavlovia",
       command: "init"};
-    timeline.push(pavlovia_init);
+    //課題が作成できたら以下のコメントアウトをとる
+    //timeline.push(pavlovia_init);
     
-    /* trialで呈示する文字を設定 */
+    /* 課題に関するコードを以下に書く */
     var welcome = {
       type: "html-keyboard-response",
       stimulus: "こんにちわあ"
@@ -43,7 +44,8 @@ tags$script(type="text/javascript", src='lib/vendors/jspsych-6.1.0/plugins/jspsy
     var pavlovia_finish = {
       type: "pavlovia",
       command: "finish"};
-    timeline.push(pavlovia_finish);
+    //課題が作成できたら以下のコメントアウトをとる
+    //timeline.push(pavlovia_finish);
     
     /* 実験開始 */
     jsPsych.init({
