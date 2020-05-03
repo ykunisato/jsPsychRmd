@@ -1,0 +1,52 @@
+---
+title: "task name"
+author: "your name"
+output:
+  html_document:
+    mathjax: null
+    highlight: null
+    theme: null
+    css: jspsych-6.1.0/css/jspsych.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r}
+library(htmltools)
+tagList(
+tags$script(type="text/javascript", src='lib/vendors/jspsych-6.1.0/jspsych.js'),
+tags$link(rel="stylesheet", type="text/css", href="lib/vendors/jspsych-6.1.0/css/jspsych.css"),
+tags$script(type="text/javascript", src='lib/vendors/jspsych-6.1.0/plugins/jspsych-html-keyboard-response.js')
+)
+```
+
+```{js}
+    /* タイムラインを用意 */
+    var timeline = [];
+    
+    /* pavlovia.orgに接続*/
+    var pavlovia_init = {
+      type: "pavlovia",
+      command: "init"};
+    timeline.push(pavlovia_init);
+    
+    /* trialで呈示する文字を設定 */
+    var welcome = {
+      type: "html-keyboard-response",
+      stimulus: "こんにちわあ"
+    };
+    timeline.push(welcome);
+    
+    /* pavlovia.orgへの接続終了 */
+    var pavlovia_finish = {
+      type: "pavlovia",
+      command: "finish"};
+    timeline.push(pavlovia_finish);
+    
+    /* 実験開始 */
+    jsPsych.init({
+      timeline: timeline
+    });
+```

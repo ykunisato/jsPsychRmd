@@ -2,20 +2,22 @@
 % Please edit documentation in R/jsPsychRmd.R
 \name{set_jsPsych}
 \alias{set_jsPsych}
-\title{Set Research Compendium of CCP Lab}
+\title{Set the Rmd file and directory for jsPsych}
 \usage{
-set_jsPsych(file_name = "thesis", pavlovia = FALSE)
+set_jsPsych(file_name = "task", pavlovia = FALSE)
 }
 \arguments{
-\item{file_name}{file name and directory name of RMarkdown}
+\item{pavlovia}{If you set TRUE, set_jsPsych set Rmd for conducting the task in Pavlova.}
+
+\item{dir_name}{directory name of jsPsych task}
 }
 \value{
 Make directories for Research Compendium of CCP Lab and
 R Markdown file for thesis at Department of Psychology, Senshu University
 }
 \description{
-Set Research Compendium of CCP Lab
+Set the Rmd file and directory for jsPsych
 }
 \examples{
-# set_rc_ccp("yoshihiko_kunisato")
+# set_jsPsych("stroop")
 }
