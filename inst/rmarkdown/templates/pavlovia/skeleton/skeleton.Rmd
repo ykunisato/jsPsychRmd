@@ -49,7 +49,11 @@ tags$script(type="text/javascript", src="lib/jspsych-pavlovia-3.2.5.js")
     //timeline.push(pavlovia_finish);
     
     /* 実験開始 */
+    /* 実験開始 */
     jsPsych.init({
-      timeline: timeline
+      timeline: timeline,
+      on_finish: function() {
+        jsPsych.data.displayData();
+      }
     });
 ```

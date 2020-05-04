@@ -34,6 +34,9 @@ tags$script(src='jspsych-6.1.0/plugins/jspsych-html-keyboard-response.js')
     
     /* 実験開始 */
     jsPsych.init({
-      timeline: timeline
+      timeline: timeline,
+      on_finish: function() {
+        jsPsych.data.displayData();
+      }
     });
 ```
