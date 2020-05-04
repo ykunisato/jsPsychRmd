@@ -23,11 +23,7 @@ set_jsPsych <- function (file_name = "task", folder = TRUE, pavlovia = FALSE){
   }
   # make jsPsych directory
   dir_jsPsych <- "jspsych-6.1.0"
-  if(pavlovia == TRUE){
-    path_jsPsych <- file.path(path, "lib/vendors", dir_jsPsych)
-  }else{
-    path_jsPsych <- file.path(path, dir_jsPsych)
-  }
+  path_jsPsych <- file.path(path, dir_jsPsych)
   if(!dir.exists(path_jsPsych)){
     temp <- tempfile()
     download.file("https://github.com/jspsych/jsPsych/releases/download/v6.1.0/jspsych-6.1.0.zip",temp)
@@ -35,6 +31,10 @@ set_jsPsych <- function (file_name = "task", folder = TRUE, pavlovia = FALSE){
     unzip(temp, exdir = path_jsPsych)
     unlink(temp)
   }
+  temp2 <- tempfile()
+  download.file("https://github.com/kunisatoLab/main/raw/master/materials/jspsych-fullscreen_jp.zip",temp2)
+  unzip(temp2, exdir = file.path(dir_jsPsych, "plugins"))
+  unlink(temp2)
   # make RMarkdown file and directory
   if(!file.exists(file.path(path, "index.Rmd"))){
     if(pavlovia == TRUE){

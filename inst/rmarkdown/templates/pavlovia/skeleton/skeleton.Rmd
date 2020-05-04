@@ -6,7 +6,7 @@ output:
     mathjax: null
     highlight: null
     theme: null
-    css: lib/vendors/jspsych-6.1.0/css/jspsych.css
+    css: jspsych-6.1.0/css/jspsych.css
 ---
 
 ```{r setup, include=FALSE}
@@ -16,8 +16,10 @@ knitr::opts_chunk$set(echo = FALSE)
 ```{r}
 library(htmltools)
 tagList(
-tags$script(type="text/javascript", src='lib/vendors/jspsych-6.1.0/jspsych.js'),
-tags$script(type="text/javascript", src='lib/vendors/jspsych-6.1.0/plugins/jspsych-html-keyboard-response.js'),
+tags$script(type="text/javascript", src='jspsych-6.1.0/jspsych.js'),
+tags$script(type="text/javascript", src='jspsych-6.1.0/plugins/jspsych-html-keyboard-response.js'),
+tags$script(type="text/javascript", src='jspsych-6.1.0/plugins/jspsych-html-button-response.js'),
+tags$script(type="text/javascript", src='jspsych-6.1.0/plugins/jspsych-fullscreen_jp.js'),
 tags$script(type="text/javascript", src="lib/vendors/jquery-2.2.0.min.js"),
 tags$script(type="text/javascript", src="lib/jspsych-pavlovia-3.2.5.js")
 )
