@@ -24,36 +24,33 @@ tags$script(type="text/javascript", src="lib/jspsych-pavlovia-3.2.5.js")
 ```
 
 ```{js}
-    /* タイムラインを用意 */
-    var timeline = [];
+/* pavlovia.orgに接続*/
+var pavlovia_init = {
+  type: "pavlovia",
+  command: "init"
+};
     
-    /* pavlovia.orgに接続*/
-    var pavlovia_init = {
-      type: "pavlovia",
-      command: "init"};
-    //課題が作成できたら以下のコメントアウトをとる
-    //timeline.push(pavlovia_init);
+/* 課題に関するコードを以下に書く */
+var welcome = {
+  type: "html-keyboard-response",
+  stimulus: "こんにちわあ"
+};
     
-    /* 課題に関するコードを以下に書く */
-    var welcome = {
-      type: "html-keyboard-response",
-      stimulus: "こんにちわあ"
-    };
-    timeline.push(welcome);
     
-    /* pavlovia.orgへの接続終了 */
-    var pavlovia_finish = {
-      type: "pavlovia",
-      command: "finish"};
-    //課題が作成できたら以下のコメントアウトをとる
-    //timeline.push(pavlovia_finish);
+/* pavlovia.orgへの接続終了 */
+var pavlovia_finish = {
+  type: "pavlovia",
+  command: "finish"
+};
+
+/* タイムラインの設定（課題ができたらpavlovia_initとpavlovia_finishの//をとってください） */
+var timeline = [];
+//timeline.push(pavlovia_init);
+timeline.push(welcome);
+//timeline.push(pavlovia_finish);
     
-    /* 実験開始 */
-    /* 実験開始 */
-    jsPsych.init({
-      timeline: timeline,
-      on_finish: function() {
-        jsPsych.data.displayData();
-      }
-    });
+/* 課題開始 */
+jsPsych.init({
+  timeline: timeline
+});
 ```
