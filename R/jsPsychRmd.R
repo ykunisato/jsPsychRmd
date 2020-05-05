@@ -31,11 +31,6 @@ set_jsPsych <- function (file_name = "task", folder = TRUE, pavlovia = FALSE){
     unzip(temp, exdir = path_jsPsych)
     unlink(temp)
   }
-  # add jspsych-fullscreen_jp.js
-  file.copy(
-    from = system.file("extdata", "jspsych-fullscreen_jp.js", package = "jsPsychRmd"),
-    to = file.path(path_jsPsych, "plugins")
-  )
   # make RMarkdown file and directory
   if(!file.exists(file.path(path, "index.Rmd"))){
     if(pavlovia == TRUE){

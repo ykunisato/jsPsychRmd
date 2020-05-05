@@ -25,8 +25,6 @@ FALSEがデフォルトです)。以下の場合だとstroopという名前の�
 
     set_jsPsych(file_name = "stroop", folder = TRUE, pavlovia = FALSE)
 
-ちなみに，jsPsychでは日本語表示ができますが，フルスクリーン化のプラグイン（jspsych-fullscreen.js）は英語標記になります。そこで，その日本化版（jspsych-fullscreen\_jp.js）を作成して，上記でダウンロードしたjspsych-6.1.0内に保存しています。jspsych-fullscreen\_jp.jsを使えば，フルスクリーン化の教示も日本語になります。
-
 ### RMarkdownとjsPsychで行動課題を作って，pavloviaで実施する場合
 
 RMarkdownとjsPsychで課題を作ってpavloviaで実施する場合，[pavlovia.orgの解説](https://pavlovia.org/docs/experiments/create-jsPsych)を参考に，Pavlovia’s
