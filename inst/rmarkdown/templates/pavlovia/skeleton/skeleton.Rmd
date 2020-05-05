@@ -31,13 +31,20 @@ var pavlovia_init = {
   type: "pavlovia",
   command: "init"
 };
+
+/* 全画面表示化 */
+var fullscreen = {
+  type: 'fullscreen',
+  message: '<p>以下のボタンをクリックすると，画面は全画面表示に切り替わります。全画面表示を止めたい場合はEscキーを押してください。</p>',
+  button_label: "全画面表示に切り替え",
+  fullscreen_mode: true
+};
     
 /* 課題に関するコードを以下に書く */
 var welcome = {
   type: "html-keyboard-response",
   stimulus: "こんにちわあ"
 };
-    
     
 /* pavlovia.orgへの接続終了 */
 var pavlovia_finish = {
@@ -48,6 +55,7 @@ var pavlovia_finish = {
 /* タイムラインの設定（課題ができたらpavlovia_initとpavlovia_finishの//をとってください） */
 var timeline = [];
 //timeline.push(pavlovia_init);
+//timeline.push(fullscreen);
 timeline.push(welcome);
 //timeline.push(pavlovia_finish);
     
