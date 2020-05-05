@@ -19,7 +19,7 @@ tagList(
 tags$script(src='jspsych-6.1.0/jspsych.js'),
 tags$script(src='jspsych-6.1.0/plugins/jspsych-html-keyboard-response.js'),
 tags$script(src='jspsych-6.1.0/plugins/jspsych-html-button-response.js'),
-tags$script(src='jspsych-6.1.0/plugins/jspsych-fullscreen_jp.js')
+tags$script(src='jspsych-6.1.0/plugins/jspsych-fullscreen.js')
 )
 ```
 
