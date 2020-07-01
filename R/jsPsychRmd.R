@@ -1,16 +1,15 @@
 #' Set the Rmd file and directory for jsPsych
 #'
-#' @param dir_name directory name of jsPsych task (set "task" in default)
-#' @param folder If you set TRUE, set_jsPsych make directory and put file in it(set TRUE in default)
 #' @param pavlovia If you set TRUE, set_jsPsych set Rmd for conducting the task in Pavlova (set FALSE in default)
+#' @param folder If you set TRUE, set_jsPsych make directory that you set and put file in it(set FALSE in default)
 #' @return Make directories for Research Compendium of CCP Lab and
 #' R Markdown file for thesis at Department of Psychology, Senshu University
 #' @examples # set_jsPsych("stroop")
 #' @export
 
-set_jsPsych <- function (file_name = "task", folder = TRUE, pavlovia = FALSE){
-  if(folder == TRUE){
-    path = file.path(getwd(), file_name)
+set_jsPsych <- function (pavlovia = FALSE, folder = FALSE){
+  if(folder != FALSE){
+    path = file.path(getwd(), folder)
     dir.create(path, showWarnings = FALSE)
   }else{
     path = getwd()

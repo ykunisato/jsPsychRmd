@@ -29,19 +29,30 @@ jsPsychRmdは，jsPsychをRmarkdownを使って書くための準備をするた
 devtools::install_github("ykunisato/jsPsychRmd")
 ```
 ## 使い方
-### RMarkdownとjsPsychで行動課題を作る場合
+
+set_jsPsych(pavlovia = FALSE, folder = FALSE)は，引数にpavlovia（pavlovia用のRmdファイルを用意するかどうか，デフォルトでは用意しない）とfolder（新たにフォルダを作って，そこに各種ファイルを配置するかどうか，デフォルトでは用意しない）があります。この２つの引数を組み合わせて以下のような活用ができると思います。
+
+### 1.用意したフォルダ内にRMarkdownとjsPsychで行動課題を作る場合
 
 
-jsPsychで行動課題を作りたいフォルダに移動して，以下を実行します(folder = TRUE, pavlovia = FALSEがデフォルトです)。以下の場合だとstroopという名前のフォルダ内に，Rmdファイル(index.Rmdという名前になります)，刺激をいれるstimuliフォルダ（READMEファイルが入っています），jspsych-6.1.0が配置されます。まずは，Rmdファイルを開いて，Knitを押すと，「こんにちは！」が表示されるHTMLファイルが作られます。後は，各種jsPsychのチュートリアルに従ってコードなどを追加していけば，課題が作れます。
-
-```
-set_jsPsych(file_name = "stroop", folder = TRUE, pavlovia = FALSE)
-```
-
-### RMarkdownとjsPsychで行動課題を作って，pavloviaで実施する場合
-
-RMarkdownとjsPsychで課題を作ってpavloviaで実施する場合，[pavlovia.orgの解説](https://pavlovia.org/docs/experiments/create-jsPsych)を参考に，Pavlovia's GitLab repositoryに新しいプロジェクトを作って，ご自身のRStudioで，File→New Project→Version ControlからGitプロジェクトを作ります（Version Controlでご自身のPavlovia's GitLab repositoryの設定情報を入れてください）。その上で，以下を実行してもらうと，そのプロジェクト内に，pavloviaに対応した配置のライブラリとRmdファイルを用意します。あとは課題を作って完成させて，pavloviaにアップしたら実行できます（課題の作成時はコメントアウトしているpavloviaとの連携に関する部分のコメントアウトを外す必要はあります）。
+jsPsychで行動課題を作りたいフォルダに移動して，以下を実行します(引数の指定は不要です)。用意したフォルダ内に，Rmdファイル(index.Rmdという名前になります)，刺激をいれるstimuliフォルダ（READMEファイルが入っています），jspsych-6.1.0が配置されます。まずは，Rmdファイルを開いて，Knitを押すと，「こんにちは！」が表示されるHTMLファイルが作られます。後は，各種jsPsychのチュートリアルに従ってコードなどを追加していけば，課題が作れます。
 
 ```
-set_jsPsych(file_name = "stroop", folder = FALSE, pavlovia = TRUE)
+set_jsPsych()
+```
+
+### 2.指定した名前のフォルダを作って，そこでRMarkdownとjsPsychで行動課題を作る場合
+
+次は，自分でフォルダを作るのではなく，以下のように，folderに名前を指定します。そうすると，指定した名前でフォルダを作って（以下だとstroop），そのフォルダ内に，Rmdファイル(index.Rmdという名前になります)，刺激をいれるstimuliフォルダ（READMEファイルが入っています），jspsych-6.1.0が配置されます。まずは，Rmdファイルを開いて，Knitを押すと，「こんにちは！」が表示されるHTMLファイルが作られます。後は，各種jsPsychのチュートリアルに従ってコードなどを追加していけば，課題が作れます。
+
+```
+set_jsPsych(folder = "stroop")
+```
+
+### 3.RMarkdownとjsPsychで行動課題を作って，pavloviaで実施する場合
+
+最後に，RMarkdownとjsPsychで課題を作ってpavloviaで実施する場合，[pavlovia.orgの解説](https://pavlovia.org/docs/experiments/create-jsPsych)を参考に，Pavlovia's GitLab repositoryに新しいプロジェクトを作って，ご自身のRStudioで，File→New Project→Version ControlからGitプロジェクトを作ります（Version Controlでご自身のPavlovia's GitLab repositoryの設定情報を入れてください）。その上で，以下を実行してもらうと，そのプロジェクト内に，pavloviaに対応した配置のライブラリとRmdファイルを用意します。あとは課題を作って完成させて，pavloviaにアップしたら実行できます（課題の作成時はコメントアウトしているpavloviaとの連携に関する部分のコメントアウトを外す必要はあります）。
+
+```
+set_jsPsych(pavlovia = TRUE)
 ```

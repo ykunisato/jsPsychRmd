@@ -4,14 +4,12 @@
 \alias{set_jsPsych}
 \title{Set the Rmd file and directory for jsPsych}
 \usage{
-set_jsPsych(file_name = "task", folder = TRUE, pavlovia = FALSE)
+set_jsPsych(pavlovia = FALSE, folder = FALSE)
 }
 \arguments{
-\item{folder}{If you set TRUE, set_jsPsych make directory and put file in it(set TRUE in default)}
-
 \item{pavlovia}{If you set TRUE, set_jsPsych set Rmd for conducting the task in Pavlova (set FALSE in default)}
 
-\item{dir_name}{directory name of jsPsych task (set "task" in default)}
+\item{folder}{If you set TRUE, set_jsPsych make directory that you set and put file in it(set FALSE in default)}
 }
 \value{
 Make directories for Research Compendium of CCP Lab and
