@@ -18,8 +18,8 @@ jsPsychRmdは，jsPsychをRmarkdownを使って書くための準備をするた
 
 ## 使い方
 
-set\_jsPsych(pavlovia = FALSE, folder =
-FALSE)は，引数にpavlovia（pavlovia用のRmdファイルを用意するかどうか，デフォルトでは用意しない）とfolder（新たにフォルダを作って，そこに各種ファイルを配置するかどうか，デフォルトでは用意しない）があります。この２つの引数を組み合わせて以下のような活用ができると思います。
+set\_jsPsych(pavlovia = FALSE, folder = FALSE, exclude\_smartphone =
+FALSE)は，引数にpavlovia（pavlovia用のRmdファイルを用意するかどうか，デフォルトでは用意しない），folder（新たにフォルダを作って，そこに各種ファイルを配置するかどうか，デフォルトでは用意しない），exclude\_smartphone（スマートフォンからのアクセスの場合に警告メッセージを出して終了する設定をするかどうか）があります。この３つの引数を組み合わせて以下のような活用ができると思います。
 
 ### 1.用意したフォルダ内にRMarkdownとjsPsychで行動課題を作る場合
 
@@ -41,3 +41,11 @@ ControlからGitプロジェクトを作ります（Version Controlでご自身�
 repositoryの設定情報を入れてください）。その上で，以下を実行してもらうと，そのプロジェクト内に，pavloviaに対応した配置のライブラリとRmdファイルを用意します。あとは課題を作って完成させて，pavloviaにアップしたら実行できます（課題の作成時はコメントアウトしているpavloviaとの連携に関する部分のコメントアウトを外す必要はあります）。
 
     set_jsPsych(pavlovia = TRUE)
+
+### 4.上記に加えて，スマートフォンを使った場合に警告メッセージを出す場合
+
+山形大学の小林正法先生の解説（<https://www.notion.so/OS-5fc2cf5bc43c4af99bb0a9ee22d8fc7d>
+）を参考に,参加者がスマートフォンからアクセスしているかどうかの判別と警告メッセージの出すコードを追加したRmdファイルを作成しました。以下のように，exclude\_smartphone
+= TRUEとしていただくと，自動的にスマートフォン使用の判別と警告メッセージを出すコードが追加されたRmdが用意されます。
+
+    set_jsPsych(pavlovia = TRUE, exclude_smartphone = TRUE)

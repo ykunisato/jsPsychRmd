@@ -1,0 +1,82 @@
+---
+title: "task name"
+author: "your name"
+output:
+  html_document:
+    mathjax: null
+    highlight: null
+    theme: null
+    css: jspsych-6.1.0/css/jspsych.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r}
+library(htmltools)
+tagList(
+tags$script(type="text/javascript", src='jspsych-6.1.0/jspsych.js'),
+tags$script(type="text/javascript", src='jspsych-6.1.0/plugins/jspsych-html-keyboard-response.js'),
+tags$script(type="text/javascript", src='jspsych-6.1.0/plugins/jspsych-html-button-response.js'),
+tags$script(type="text/javascript", src='jspsych-6.1.0/plugins/jspsych-fullscreen.js'),
+tags$script(type="text/javascript", src="lib/vendors/jquery-2.2.0.min.js"),
+tags$script(type="text/javascript", src="lib/jspsych-pavlovia-3.2.5.js"),
+tags$script(type="text/javascript", src='jspsych-6.1.0/platform.js')
+)
+```
+
+```{js}
+/* pavlovia.orgに接続*/
+var pavlovia_init = {
+  type: "pavlovia",
+  command: "init"
+};
+
+/* 使用しているOS情報の取得 */
+var nameOs = platform.os.toString().toLowerCase();
+/* スマホを使っている場合の参加不可メッセージ */
+smartPhoneMessage = {
+    type: 'html-keyboard-response',
+    stimulus: '<strong>この実験はスマートフォンやタブレットでは実施できません。大変申し訳ございませんが，パソコンを使って実施をしてください。</strong>',
+    trial_duration: 5000
+};
+
+/* 全画面表示化 */
+var fullscreen = {
+  type: 'fullscreen',
+  message: '<p>以下のボタンをクリックすると，画面は全画面表示に切り替わります。全画面表示を止めたい場合はEscキーを押してください。</p>',
+  button_label: "全画面表示に切り替え",
+  fullscreen_mode: true
+};
+
+/* 課題に関するコードを以下に書く。以下では使用しているOSを表示している*/
+var welcome = {
+  type: "html-keyboard-response",
+  stimulus: "あなたの使っているOSは，「" + nameOs + "」ですね"
+};
+
+/* pavlovia.orgへの接続終了 */
+var pavlovia_finish = {
+  type: "pavlovia",
+  command: "finish"
+};
+
+
+/* タイムラインの設定 */
+var timeline = [];
+/* スマホを使っている場合に参加不可メッセージを送る */
+if (nameOs.indexOf('ios') !== -1 | nameOs.indexOf('android') !== -1 ){
+	timeline.push(smartPhoneMessage);
+}else{
+  //timeline.push(pavlovia_init);
+  //timeline.push(fullscreen);
+  timeline.push(welcome);
+  //timeline.push(pavlovia_finish);
+}
+    
+/* 課題開始 */
+jsPsych.init({
+  timeline: timeline
+});
+```

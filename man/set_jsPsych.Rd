@@ -4,12 +4,14 @@
 \alias{set_jsPsych}
 \title{Set the Rmd file and directory for jsPsych}
 \usage{
-set_jsPsych(pavlovia = FALSE, folder = FALSE)
+set_jsPsych(pavlovia = FALSE, folder = FALSE, exclude_smartphone = FALSE)
 }
 \arguments{
 \item{pavlovia}{If you set TRUE, set_jsPsych set Rmd for conducting the task in Pavlova (set FALSE in default)}
 
 \item{folder}{If you set TRUE, set_jsPsych make directory that you set and put file in it(set FALSE in default)}
+
+\item{exclude_smartphone}{If you set TRUE, set_jsPsych download the platform.js and set Rmd file(set FALSE in default)}
 }
 \value{
 Make directories for Research Compendium of CCP Lab and

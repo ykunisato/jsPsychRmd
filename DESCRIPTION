@@ -1,7 +1,7 @@
 Package: jsPsychRmd
 Type: Package
 Title: R package for setting the Rmd file and directory for jsPsych
-Version: 0.2.4
+Version: 0.2.5
 Author: Yoshihiko Kunisato
 Maintainer: Yoshihiko Kunisato <ykunisato@gmail.com>
 Description: R package for setting the Rmd file and directory for jsPsych
@@ -9,4 +9,4 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1

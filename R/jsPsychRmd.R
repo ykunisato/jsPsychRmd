@@ -2,12 +2,13 @@
 #'
 #' @param pavlovia If you set TRUE, set_jsPsych set Rmd for conducting the task in Pavlova (set FALSE in default)
 #' @param folder If you set TRUE, set_jsPsych make directory that you set and put file in it(set FALSE in default)
+#' @param exclude_smartphone If you set TRUE, set_jsPsych download the platform.js and set Rmd file(set FALSE in default)
 #' @return Make directories for Research Compendium of CCP Lab and
 #' R Markdown file for thesis at Department of Psychology, Senshu University
 #' @examples # set_jsPsych("stroop")
 #' @export
 
-set_jsPsych <- function (pavlovia = FALSE, folder = FALSE){
+set_jsPsych <- function (pavlovia = FALSE, folder = FALSE, exclude_smartphone = FALSE){
   if(folder != FALSE){
     path = file.path(getwd(), folder)
     dir.create(path, showWarnings = FALSE)
@@ -33,9 +34,19 @@ set_jsPsych <- function (pavlovia = FALSE, folder = FALSE){
   # make RMarkdown file and directory
   if(!file.exists(file.path(path, "index.Rmd"))){
     if(pavlovia == TRUE){
-      rmarkdown::draft(file.path(path, "index.Rmd"), template = "pavlovia", package = "jsPsychRmd", edit = FALSE)
+      if(exclude_smartphone == TRUE){
+        download.file('https://raw.githubusercontent.com/bestiejs/platform.js/master/platform.js', destfile = file.path(path_jsPsych,"platform.js"), method = "wget")
+        rmarkdown::draft(file.path(path, "index.Rmd"), template = "pavlovia_exclude_smartphone", package = "jsPsychRmd", edit = FALSE)
+      }else{
+        rmarkdown::draft(file.path(path, "index.Rmd"), template = "pavlovia", package = "jsPsychRmd", edit = FALSE)
+      }
     }else{
-      rmarkdown::draft(file.path(path, "index.Rmd"), template = "jsPsych", package = "jsPsychRmd", edit = FALSE)
+      if(exclude_smartphone == TRUE){
+        download.file('https://raw.githubusercontent.com/bestiejs/platform.js/master/platform.js', destfile = file.path(path_jsPsych,"platform.js"), method = "wget")
+        rmarkdown::draft(file.path(path, "index.Rmd"), template = "jsPsych_exclude_smartphone", package = "jsPsychRmd", edit = FALSE)
+      }else{
+        rmarkdown::draft(file.path(path, "index.Rmd"), template = "jsPsych", package = "jsPsychRmd", edit = FALSE)
+      }
     }
   }
 }
