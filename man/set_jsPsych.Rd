@@ -4,18 +4,28 @@
 \alias{set_jsPsych}
 \title{Set the Rmd file and directory for jsPsych}
 \usage{
-set_jsPsych(pavlovia = FALSE, folder = FALSE, exclude_smartphone = FALSE)
+set_jsPsych(
+  folder = FALSE,
+  jsPsych_version = "6.3.1",
+  psychophysics_version = FALSE,
+  exclude_smartphone = FALSE,
+  pavlovia = FALSE,
+  rc = FALSE
+)
 }
 \arguments{
-\item{pavlovia}{If you set TRUE, set_jsPsych set Rmd for conducting the task in Pavlova (set FALSE in default)}
-
 \item{folder}{If you set TRUE, set_jsPsych make directory that you set and put file in it(set FALSE in default)}
 
+\item{jsPsych_version}{If you set a specific version number of jsPsych,
+set_jsPsych prepare a file with that version of jsPsych.}
+
+\item{psychophysics_version}{If you set version number, set_jsPsych prepare a file of jspsych-psychophysics(set FALSE in default)}
+
 \item{exclude_smartphone}{If you set TRUE, set_jsPsych download the platform.js and set Rmd file(set FALSE in default)}
-}
-\value{
-Make directories for Research Compendium of CCP Lab and
-R Markdown file for thesis at Department of Psychology, Senshu University
+
+\item{pavlovia}{If you set TRUE, set_jsPsych set Rmd for conducting the task in Pavlova (set FALSE in default)}
+
+\item{rc}{If you set name of folder of RC, set_jsPsych make directory of RC.}
 }
 \description{
 Set the Rmd file and directory for jsPsych
