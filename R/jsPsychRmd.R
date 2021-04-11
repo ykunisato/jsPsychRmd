@@ -64,7 +64,24 @@ set_jsPsych <- function (folder = FALSE,
   }
   # make RMarkdown file and directory
   if(!file.exists(file.path(path, "index.Rmd"))){
-    draft(file.path(path, "index.Rmd"), template = "jsPsych", package = "jsPsychRmd", edit = FALSE)
+    # set Rmd template file
+    path_skeleton <- system.file("rmarkdown/templates/jsPsych/skeleton/skeleton.Rmd",package = "jsPsychRmd")
+    text_skeleton <- readLines(path_skeleton, warn = F)
+    tmp_rmd <- file(file_name, "w")
+    # あとは以下を変更してくのみ
+    for (i in 1:length(text_skeleton)) {
+      st <- text_skeleton[i]
+      st <- str_replace(st, pattern = "output: md_document",
+                        replacement = paste0("output: eln4Rmd::render_elnjp_pdf(Rmd_file = '",output_file_name,"')"))
+      st <- str_replace(st, pattern = "# date_research",
+                        replacement = paste0("date_research <- '",date_name, "'"))
+      st <- str_replace(st, pattern = "# date_write",
+                        replacement = paste0("date_write <- '",date_write, "'"))
+      writeLines(st, tmp_rmd)
+    }
+    close(tmp_rmd)
+    navigateToFile(paste0(tmp_wd,"/", file_name))
+
   #  if(pavlovia == TRUE){
   #    if(exclude_smartphone == TRUE){
   #      download.file('https://raw.githubusercontent.com/bestiejs/platform.js/master/platform.js', destfile = file.path(path_jsPsych,"platform.js"), method = "wget")
