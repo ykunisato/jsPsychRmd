@@ -45,7 +45,7 @@ set_jsPsych <- function (folder = FALSE,
   if(!dir.exists(path_jsPsych)){
     temp <- tempfile()
     download.file(paste0("https://github.com/jspsych/jsPsych/releases/download/v",jsPsych_version,"/jspsych-",jsPsych_version,".zip"),temp)
-    unzip(temp)
+    unzip(temp, exdir = path)
     unlink(temp)
   }
   # make psychophysics directory
@@ -58,7 +58,7 @@ set_jsPsych <- function (folder = FALSE,
     if(!dir.exists(path_psychophysics)){
       temp2 <- tempfile()
       download.file(paste0("https://github.com/kurokida/jspsych-psychophysics/archive/refs/tags/v",psychophysics_version,".zip"),temp2)
-      unzip(temp2)
+      unzip(temp2, exdir = path)
       unlink(temp2)
     }
   }
