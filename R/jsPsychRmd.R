@@ -156,7 +156,7 @@ set_jsPsych <- function (folder = FALSE,
         }
       }else if(str_detect(st, pattern = "#15")){
         if(pavlovia == TRUE){
-          st <- "/* pavlovia\u8a2d\u5b9a */"
+          st <- "/*pavlovia\u8a2d\u5b9a*/"
           writeLines(st, tmp_rmd)
         }
       }else if(str_detect(st, pattern = "#16")){
@@ -201,7 +201,7 @@ set_jsPsych <- function (folder = FALSE,
         }
       }else if(str_detect(st, pattern = "#24")){
         if(exclude_smartphone == TRUE){
-          st <- "/* \u30b9\u30de\u30db\u8a2d\u5b9a */"
+          st <- "/*\u30b9\u30de\u30db\u8a2d\u5b9a*/"
           writeLines(st, tmp_rmd)
         }
       }else if(str_detect(st, pattern = "#25")){
@@ -261,7 +261,7 @@ set_jsPsych <- function (folder = FALSE,
         }
       }else if(str_detect(st, pattern = "#36")){
         if(exclude_smartphone == TRUE){
-          st <- "/* \u30b9\u30de\u30db\u5bfe\u5fdc　*/"
+          st <- "/* \u30b9\u30de\u30db\u5bfe\u5fdc */"
           writeLines(st, tmp_rmd)
         }
       }else if(str_detect(st, pattern = "#37")){
