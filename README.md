@@ -60,7 +60,7 @@ jsPsychRmd::set_jsPsych(folder = "task", exclude_smartphone = TRUE)
 folder = "task"でフォルダを新規作成するのではなく，既にあるフォルダ内にファイルを配置したいこともあります。その場合は，以下を実行します(引数の指定は不要です)。用意したフォルダ内に，Rmdファイル(index.Rmdという名前になります)，刺激をいれるstimuliフォルダ（READMEファイルが入っています），jspsych-6.3.1が配置されます。
 
 ```
-set_jsPsych()
+jsPsychRmd::set_jsPsych()
 ```
 
 
