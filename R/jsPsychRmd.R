@@ -42,12 +42,11 @@ set_jsPsych <- function (folder = FALSE,
     writeLines("README about stimuli", file.path(path, "stimuli/README_materials.md"))
   }
   # make jsPsych directory
-  dir_jsPsych <- paste0("jspsych-",jsPsych_version)
-  path_jsPsych <- file.path(path, dir_jsPsych)
+  path_jsPsych <- file.path(path, paste0("jspsych-",jsPsych_version))
   if(!dir.exists(path_jsPsych)){
     temp <- tempfile()
     download.file(paste0("https://github.com/jspsych/jsPsych/releases/download/v",jsPsych_version,"/jspsych-",jsPsych_version,".zip"),temp)
-    unzip(temp, exdir = path_jsPsych)
+    unzip(temp)
     unlink(temp)
     download.file('https://raw.githubusercontent.com/bestiejs/platform.js/master/platform.js', destfile = file.path(path_jsPsych,"platform.js"), method = "wget")
   }
@@ -56,12 +55,11 @@ set_jsPsych <- function (folder = FALSE,
     if(psychophysics_version == TRUE){
       psychophysics_version <- "2.3.2"
     }
-    dir_psychophysics <- paste0("jspsych-psychophysics-",psychophysics_version)
-    path_psychophysics <- file.path(path, psychophysics_version)
+    path_psychophysics <- file.path(path, paste0("jspsych-psychophysics-",psychophysics_version))
     if(!dir.exists(path_psychophysics)){
       temp2 <- tempfile()
       download.file(paste0("https://github.com/kurokida/jspsych-psychophysics/archive/refs/tags/v",psychophysics_version,".zip"),temp2)
-      unzip(temp2, exdir = path_psychophysics)
+      unzip(temp2)
       unlink(temp2)
     }
   }
@@ -294,6 +292,6 @@ set_jsPsych <- function (folder = FALSE,
       }
     }
     close(tmp_rmd)
-    navigateToFile(paste0(tmp_wd,"/", "index.Rmd"))
+    navigateToFile(paste0(path,"/index.Rmd"))
   }
 }
