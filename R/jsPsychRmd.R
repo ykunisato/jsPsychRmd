@@ -283,7 +283,7 @@ set_jsPsych <- function (folder = FALSE,
           writeLines(st, tmp_rmd)
         }
       }else if(str_detect(st, pattern = "#41")){
-        if(exclude_smartphone == TRUE){
+        if(pavlovia == TRUE){
           st <- "//timeline.push(pavlovia_finish);"
           writeLines(st, tmp_rmd)
         }
