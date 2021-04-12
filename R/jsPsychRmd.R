@@ -292,6 +292,6 @@ set_jsPsych <- function (folder = FALSE,
       }
     }
     close(tmp_rmd)
-    navigateToFile(paste0(path,"/index.Rmd"))
+    navigateToFile(file.path(path, "index.Rmd"))
   }
 }
