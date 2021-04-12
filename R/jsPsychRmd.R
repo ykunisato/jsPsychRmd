@@ -70,8 +70,7 @@ set_jsPsych <- function (folder = FALSE,
     # set Rmd template file
     path_skeleton <- system.file("rmarkdown/templates/jsPsych/skeleton/skeleton.Rmd",package = "jsPsychRmd")
     text_skeleton <- readLines(path_skeleton, warn = F)
-    tmp_rmd <- file("index.Rmd", "w")
-    # あとは以下を変更してくのみ
+    tmp_rmd <- file(file.path(path, "index.Rmd"), "w")
     for (i in 1:length(text_skeleton)) {
       st <- text_skeleton[i]
       if(str_detect(st, pattern = "css: jspsych-6/css/jspsych.css")){
@@ -157,7 +156,7 @@ set_jsPsych <- function (folder = FALSE,
         }
       }else if(str_detect(st, pattern = "#15")){
         if(pavlovia == TRUE){
-          st <- "/* pavlovia設定 */"
+          st <- "/* pavlovia\u8a2d\u5b9a */"
           writeLines(st, tmp_rmd)
         }
       }else if(str_detect(st, pattern = "#16")){
@@ -202,7 +201,7 @@ set_jsPsych <- function (folder = FALSE,
         }
       }else if(str_detect(st, pattern = "#24")){
         if(exclude_smartphone == TRUE){
-          st <- "/* スマホ設定 */"
+          st <- "/* \u30b9\u30de\u30db\u8a2d\u5b9a */"
           writeLines(st, tmp_rmd)
         }
       }else if(str_detect(st, pattern = "#25")){
@@ -222,7 +221,7 @@ set_jsPsych <- function (folder = FALSE,
         }
       }else if(str_detect(st, pattern = "#28")){
         if(exclude_smartphone == TRUE){
-          st <- "stimulus: 'あなたの使っているOSは，「' + nameOs + '」ですね'"
+          st <- "stimulus: '\u3042\u306a\u305f\u306e\u4f7f\u3063\u3066\u3044\u308bOS\u306f\uff0c\u300c' + nameOs + '\u300d\u3067\u3059\u306d'"
           writeLines(st, tmp_rmd)
         }
       }else if(str_detect(st, pattern = "#29")){
@@ -242,7 +241,7 @@ set_jsPsych <- function (folder = FALSE,
         }
       }else if(str_detect(st, pattern = "#32")){
         if(exclude_smartphone == TRUE){
-          st <- "stimulus: '<strong>この実験はスマートフォンやタブレットでは実施できません。大変申し訳ございませんが，パソコンを使って実施をしてください。</strong>',"
+          st <- "stimulus: '<strong>\u3053\u306e\u5b9f\u9a13\u306f\u30b9\u30de\u30fc\u30c8\u30d5\u30a9\u30f3\u3084\u30bf\u30d6\u30ec\u30c3\u30c8\u3067\u306f\u5b9f\u65bd\u3067\u304d\u307e\u305b\u3093\u3002\u5927\u5909\u7533\u3057\u8a33\u3054\u3056\u3044\u307e\u305b\u3093\u304c\uff0c\u30d1\u30bd\u30b3\u30f3\u3092\u4f7f\u3063\u3066\u5b9f\u65bd\u3092\u3057\u3066\u304f\u3060\u3055\u3044\u3002</strong>',"
           writeLines(st, tmp_rmd)
         }
       }else if(str_detect(st, pattern = "#33")){
@@ -262,7 +261,7 @@ set_jsPsych <- function (folder = FALSE,
         }
       }else if(str_detect(st, pattern = "#36")){
         if(exclude_smartphone == TRUE){
-          st <- "/* スマホ対応　*/"
+          st <- "/* \u30b9\u30de\u30db\u5bfe\u5fdc　*/"
           writeLines(st, tmp_rmd)
         }
       }else if(str_detect(st, pattern = "#37")){
