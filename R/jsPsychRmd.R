@@ -73,7 +73,7 @@ set_jsPsych <- function (folder = FALSE,
     tmp_rmd <- file(file.path(path, "index.Rmd"), "w")
     for (i in 1:length(text_skeleton)) {
       st <- text_skeleton[i]
-      if(str_detect(st, pattern = "css: jspsych-6/css/jspsych.css")){
+      if(str_detect(st, pattern = "#00")){
         st <- paste0("    css: jspsych-",jsPsych_version,"/css/jspsych.css")
         writeLines(st, tmp_rmd)
       }else if(str_detect(st, pattern = "#01")){

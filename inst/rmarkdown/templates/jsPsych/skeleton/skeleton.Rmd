@@ -6,7 +6,7 @@ output:
     mathjax: null
     highlight: null
     theme: null
-    css: jspsych-6/css/jspsych.css
+#00 css: jspsych-6/css/jspsych.css
 ---
 
 ```{r setup, include=FALSE}
