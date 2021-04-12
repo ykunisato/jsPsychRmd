@@ -2,5 +2,7 @@
 
 export(set_jsPsych)
 importFrom(rmarkdown,draft)
+importFrom(rstudioapi,navigateToFile)
+importFrom(stringr,str_detect)
 importFrom(utils,download.file)
 importFrom(utils,unzip)

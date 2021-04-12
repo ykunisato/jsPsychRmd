@@ -2,6 +2,8 @@
 #' @importFrom utils download.file
 #' @importFrom utils unzip
 #' @importFrom rmarkdown draft
+#' @importFrom stringr str_detect
+#' @importFrom rstudioapi navigateToFile
 #' @param jsPsych_version If you set a specific version number of jsPsych,
 #'                set_jsPsych prepare a file with that version of jsPsych.
 #' @param psychophysics_version If you set version number, set_jsPsych prepare a file of jspsych-psychophysics(set FALSE in default)
@@ -47,6 +49,7 @@ set_jsPsych <- function (folder = FALSE,
     download.file(paste0("https://github.com/jspsych/jsPsych/releases/download/v",jsPsych_version,"/jspsych-",jsPsych_version,".zip"),temp)
     unzip(temp, exdir = path_jsPsych)
     unlink(temp)
+    download.file('https://raw.githubusercontent.com/bestiejs/platform.js/master/platform.js', destfile = file.path(path_jsPsych,"platform.js"), method = "wget")
   }
   # make psychophysics directory
   if(psychophysics_version != FALSE){
@@ -67,35 +70,231 @@ set_jsPsych <- function (folder = FALSE,
     # set Rmd template file
     path_skeleton <- system.file("rmarkdown/templates/jsPsych/skeleton/skeleton.Rmd",package = "jsPsychRmd")
     text_skeleton <- readLines(path_skeleton, warn = F)
-    tmp_rmd <- file(file_name, "w")
+    tmp_rmd <- file("index.Rmd", "w")
     # あとは以下を変更してくのみ
     for (i in 1:length(text_skeleton)) {
       st <- text_skeleton[i]
-      st <- str_replace(st, pattern = "output: md_document",
-                        replacement = paste0("output: eln4Rmd::render_elnjp_pdf(Rmd_file = '",output_file_name,"')"))
-      st <- str_replace(st, pattern = "# date_research",
-                        replacement = paste0("date_research <- '",date_name, "'"))
-      st <- str_replace(st, pattern = "# date_write",
-                        replacement = paste0("date_write <- '",date_write, "'"))
-      writeLines(st, tmp_rmd)
+      if(str_detect(st, pattern = "css: jspsych-6/css/jspsych.css")){
+        st <- paste0("    css: jspsych-",jsPsych_version,"/css/jspsych.css")
+        writeLines(st, tmp_rmd)
+      }else if(str_detect(st, pattern = "#01")){
+        if(pavlovia == FALSE){
+          st <- paste0("tags$script(src='jspsych-",jsPsych_version,"/jspsych.js'),")
+          writeLines(st, tmp_rmd)
+        }
+      }else if(str_detect(st, pattern = "#02")){
+        if(pavlovia == FALSE){
+          if(exclude_smartphone == TRUE){
+            st <- paste0("tags$script(src='jspsych-",jsPsych_version,"/platform.js'),")
+            writeLines(st, tmp_rmd)
+          }
+        }
+      }else if(str_detect(st, pattern = "#03")){
+        if(pavlovia == FALSE){
+          if(psychophysics_version != FALSE){
+            st <- paste0("tags$script(src='jspsych-psychophysics-",psychophysics_version,"/jspsych-psychophysics.js'),")
+            writeLines(st, tmp_rmd)
+          }
+        }
+      }else if(str_detect(st, pattern = "#04")){
+        if(pavlovia == FALSE){
+          st <- paste0("tags$script(src='jspsych-",jsPsych_version,"/plugins/jspsych-html-keyboard-response.js'),")
+          writeLines(st, tmp_rmd)
+        }
+      }else if(str_detect(st, pattern = "#05")){
+        if(pavlovia == FALSE){
+          st <- paste0("tags$script(src='jspsych-",jsPsych_version,"/plugins/jspsych-html-button-response.js'),")
+          writeLines(st, tmp_rmd)
+        }
+      }else if(str_detect(st, pattern = "#06")){
+        if(pavlovia == FALSE){
+          st <- paste0("tags$script(src='jspsych-",jsPsych_version,"/plugins/jspsych-fullscreen.js'),")
+          writeLines(st, tmp_rmd)
+        }
+      }else if(str_detect(st, pattern = "#07")){
+        if(pavlovia == TRUE){
+          st <- paste0("tags$script(type='text/javascript', src='jspsych-",jsPsych_version,"/jspsych.js'),")
+          writeLines(st, tmp_rmd)
+        }
+      }else if(str_detect(st, pattern = "#08")){
+        if(pavlovia == TRUE){
+          if(exclude_smartphone == TRUE){
+            st <- paste0("tags$script(type='text/javascript', src='jspsych-",jsPsych_version,"/platform.js'),")
+            writeLines(st, tmp_rmd)
+          }
+        }
+      }else if(str_detect(st, pattern = "#09")){
+        if(pavlovia == TRUE){
+          st <- paste0("tags$script(type='text/javascript', src='lib/vendors/jquery-2.2.0.min.js'),")
+          writeLines(st, tmp_rmd)
+        }
+      }else if(str_detect(st, pattern = "#10")){
+        if(pavlovia == TRUE){
+          st <- paste0("tags$script(type='text/javascript', src='lib/jspsych-pavlovia-3.2.5.js'),")
+          writeLines(st, tmp_rmd)
+        }
+      }else if(str_detect(st, pattern = "#11")){
+        if(pavlovia == TRUE){
+          if(psychophysics_version != FALSE){
+            st <- paste0("tags$script(type='text/javascript', src='jspsych-psychophysics-",psychophysics_version,"/jspsych-psychophysics.js'),")
+            writeLines(st, tmp_rmd)
+          }
+        }
+      }else if(str_detect(st, pattern = "#12")){
+        if(pavlovia == TRUE){
+          st <- paste0("tags$script(type='text/javascript', src='jspsych-",jsPsych_version,"/plugins/jspsych-html-keyboard-response.js'),")
+          writeLines(st, tmp_rmd)
+        }
+      }else if(str_detect(st, pattern = "#13")){
+        if(pavlovia == TRUE){
+          st <- paste0("tags$script(type='text/javascript', src='jspsych-",jsPsych_version,"/plugins/jspsych-html-button-response.js'),")
+          writeLines(st, tmp_rmd)
+        }
+      }else if(str_detect(st, pattern = "#14")){
+        if(pavlovia == TRUE){
+          st <- paste0("tags$script(type='text/javascript', src='jspsych-",jsPsych_version,"/plugins/jspsych-fullscreen.js'),")
+          writeLines(st, tmp_rmd)
+        }
+      }else if(str_detect(st, pattern = "#15")){
+        if(pavlovia == TRUE){
+          st <- "/* pavlovia設定 */"
+          writeLines(st, tmp_rmd)
+        }
+      }else if(str_detect(st, pattern = "#16")){
+        if(pavlovia == TRUE){
+          st <- "var pavlovia_init = {"
+          writeLines(st, tmp_rmd)
+        }
+      }else if(str_detect(st, pattern = "#17")){
+        if(pavlovia == TRUE){
+          st <- "  type: 'pavlovia',"
+          writeLines(st, tmp_rmd)
+        }
+      }else if(str_detect(st, pattern = "#18")){
+        if(pavlovia == TRUE){
+          st <- "  command: 'init'"
+          writeLines(st, tmp_rmd)
+        }
+      }else if(str_detect(st, pattern = "#19")){
+        if(pavlovia == TRUE){
+          st <- "};"
+          writeLines(st, tmp_rmd)
+        }
+      }else if(str_detect(st, pattern = "#20")){
+        if(pavlovia == TRUE){
+          st <- "var pavlovia_finish = {"
+          writeLines(st, tmp_rmd)
+        }
+      }else if(str_detect(st, pattern = "#21")){
+        if(pavlovia == TRUE){
+          st <- "type: 'pavlovia',"
+          writeLines(st, tmp_rmd)
+        }
+      }else if(str_detect(st, pattern = "#22")){
+        if(pavlovia == TRUE){
+          st <- "command: 'finish'"
+          writeLines(st, tmp_rmd)
+        }
+      }else if(str_detect(st, pattern = "#23")){
+        if(pavlovia == TRUE){
+          st <- "};"
+          writeLines(st, tmp_rmd)
+        }
+      }else if(str_detect(st, pattern = "#24")){
+        if(exclude_smartphone == TRUE){
+          st <- "/* スマホ設定 */"
+          writeLines(st, tmp_rmd)
+        }
+      }else if(str_detect(st, pattern = "#25")){
+        if(pavlovia == TRUE){
+          st <- "var nameOs = platform.os.toString().toLowerCase();"
+          writeLines(st, tmp_rmd)
+        }
+      }else if(str_detect(st, pattern = "#26")){
+        if(exclude_smartphone == TRUE){
+          st <- "var welcome = {"
+          writeLines(st, tmp_rmd)
+        }
+      }else if(str_detect(st, pattern = "#27")){
+        if(exclude_smartphone == TRUE){
+          st <- "type: 'html-keyboard-response',"
+          writeLines(st, tmp_rmd)
+        }
+      }else if(str_detect(st, pattern = "#28")){
+        if(exclude_smartphone == TRUE){
+          st <- "stimulus: 'あなたの使っているOSは，「' + nameOs + '」ですね'"
+          writeLines(st, tmp_rmd)
+        }
+      }else if(str_detect(st, pattern = "#29")){
+        if(exclude_smartphone == TRUE){
+          st <- "};"
+          writeLines(st, tmp_rmd)
+        }
+      }else if(str_detect(st, pattern = "#30")){
+        if(exclude_smartphone == TRUE){
+          st <- "smartPhoneMessage = {"
+          writeLines(st, tmp_rmd)
+        }
+      }else if(str_detect(st, pattern = "#31")){
+        if(exclude_smartphone == TRUE){
+          st <- "type: 'html-keyboard-response',"
+          writeLines(st, tmp_rmd)
+        }
+      }else if(str_detect(st, pattern = "#32")){
+        if(exclude_smartphone == TRUE){
+          st <- "stimulus: '<strong>この実験はスマートフォンやタブレットでは実施できません。大変申し訳ございませんが，パソコンを使って実施をしてください。</strong>',"
+          writeLines(st, tmp_rmd)
+        }
+      }else if(str_detect(st, pattern = "#33")){
+        if(exclude_smartphone == TRUE){
+          st <- "trial_duration: 5000"
+          writeLines(st, tmp_rmd)
+        }
+      }else if(str_detect(st, pattern = "#34")){
+        if(exclude_smartphone == TRUE){
+          st <- "};"
+          writeLines(st, tmp_rmd)
+        }
+      }else if(str_detect(st, pattern = "#35")){
+        if(pavlovia == TRUE){
+          st <- "//timeline.push(pavlovia_init);"
+          writeLines(st, tmp_rmd)
+        }
+      }else if(str_detect(st, pattern = "#36")){
+        if(exclude_smartphone == TRUE){
+          st <- "/* スマホ対応　*/"
+          writeLines(st, tmp_rmd)
+        }
+      }else if(str_detect(st, pattern = "#37")){
+        if(exclude_smartphone == TRUE){
+          st <- "if (nameOs.indexOf('ios') !== -1 | nameOs.indexOf('android') !== -1 ){"
+          writeLines(st, tmp_rmd)
+        }
+      }else if(str_detect(st, pattern = "#38")){
+        if(exclude_smartphone == TRUE){
+          st <- "timeline.push(smartPhoneMessage);"
+          writeLines(st, tmp_rmd)
+        }
+      }else if(str_detect(st, pattern = "#39")){
+        if(exclude_smartphone == TRUE){
+          st <- "}else{"
+          writeLines(st, tmp_rmd)
+        }
+      }else if(str_detect(st, pattern = "#40")){
+        if(exclude_smartphone == TRUE){
+          st <- "}"
+          writeLines(st, tmp_rmd)
+        }
+      }else if(str_detect(st, pattern = "#41")){
+        if(exclude_smartphone == TRUE){
+          st <- "//timeline.push(pavlovia_finish);"
+          writeLines(st, tmp_rmd)
+        }
+      }else{
+        writeLines(st, tmp_rmd)
+      }
     }
     close(tmp_rmd)
-    navigateToFile(paste0(tmp_wd,"/", file_name))
-
-  #  if(pavlovia == TRUE){
-  #    if(exclude_smartphone == TRUE){
-  #      download.file('https://raw.githubusercontent.com/bestiejs/platform.js/master/platform.js', destfile = file.path(path_jsPsych,"platform.js"), method = "wget")
-  #      draft(file.path(path, "index.Rmd"), template = "pavlovia_exclude_smartphone", package = "jsPsychRmd", edit = FALSE)
-  #    }else{
-  #      draft(file.path(path, "index.Rmd"), template = "pavlovia", package = "jsPsychRmd", edit = FALSE)
-  #    }
-  #  }else{
-  #    if(exclude_smartphone == TRUE){
-  #      download.file('https://raw.githubusercontent.com/bestiejs/platform.js/master/platform.js', destfile = file.path(path_jsPsych,"platform.js"), method = "wget")
-  #      draft(file.path(path, "index.Rmd"), template = "jsPsych_exclude_smartphone", package = "jsPsychRmd", edit = FALSE)
-  #    }else{
-  #      draft(file.path(path, "index.Rmd"), template = "jsPsych", package = "jsPsychRmd", edit = FALSE)
-  #    }
-  #  }
+    navigateToFile(paste0(tmp_wd,"/", "index.Rmd"))
   }
 }
