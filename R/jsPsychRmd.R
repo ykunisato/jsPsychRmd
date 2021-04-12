@@ -203,7 +203,7 @@ set_jsPsych <- function (folder = FALSE,
           writeLines(st, tmp_rmd)
         }
       }else if(str_detect(st, pattern = "#25")){
-        if(pavlovia == TRUE){
+        if(exclude_smartphone == TRUE){
           st <- "var nameOs = platform.os.toString().toLowerCase();"
           writeLines(st, tmp_rmd)
         }
