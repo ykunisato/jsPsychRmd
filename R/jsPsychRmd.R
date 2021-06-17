@@ -41,28 +41,7 @@ set_jsPsych <- function (folder = FALSE,
     file.create(file.path(path, "stimuli/README_materials.md"), showWarnings = FALSE)
     writeLines("README about stimuli", file.path(path, "stimuli/README_materials.md"))
   }
-  # make jsPsych directory
-  path_jsPsych <- file.path(path, paste0("jspsych-",jsPsych_version))
-  if(!dir.exists(path_jsPsych)){
-    temp <- tempfile()
-    download.file(paste0("https://github.com/jspsych/jsPsych/releases/download/v",jsPsych_version,"/jspsych-",jsPsych_version,".zip"),temp)
-    unzip(temp, exdir = paste0(path,"/"))
-    unlink(temp)
-    download.file('https://raw.githubusercontent.com/bestiejs/platform.js/master/platform.js', destfile = file.path(path_jsPsych,"platform.js"), method = "curl")
-  }
-  # make psychophysics directory
-  if(psychophysics_version != FALSE){
-    if(psychophysics_version == TRUE){
-      psychophysics_version <- "2.3.2"
-    }
-    path_psychophysics <- file.path(path, paste0("jspsych-psychophysics-",psychophysics_version))
-    if(!dir.exists(path_psychophysics)){
-      temp2 <- tempfile()
-      download.file(paste0("https://github.com/kurokida/jspsych-psychophysics/archive/refs/tags/v",psychophysics_version,".zip"),temp2)
-      unzip(temp2, exdir = paste0(path,"/"))
-      unlink(temp2)
-    }
-  }
+
   # make RMarkdown file and directory
   if(!file.exists(file.path(path, "index.Rmd"))){
     # set Rmd template file
@@ -293,5 +272,29 @@ set_jsPsych <- function (folder = FALSE,
     }
     close(tmp_rmd)
     navigateToFile(file.path(path, "index.Rmd"))
+  }
+
+  # make jsPsych directory
+  path_jsPsych <- file.path(path, paste0("jspsych-",jsPsych_version))
+  if(!dir.exists(path_jsPsych)){
+    temp <- tempfile()
+    download.file(paste0("https://github.com/jspsych/jsPsych/releases/download/v",jsPsych_version,"/jspsych-",jsPsych_version,".zip"),temp)
+    unzip(temp, exdir = paste0(path,"/"))
+    unlink(temp)
+    download.file('https://raw.githubusercontent.com/bestiejs/platform.js/master/platform.js', destfile = file.path(path_jsPsych,"platform.js"), method = "curl")
+  }
+
+  # make psychophysics directory
+  if(psychophysics_version != FALSE){
+    if(psychophysics_version == TRUE){
+      psychophysics_version <- "2.3.2"
+    }
+    path_psychophysics <- file.path(path, paste0("jspsych-psychophysics-",psychophysics_version))
+    if(!dir.exists(path_psychophysics)){
+      temp2 <- tempfile()
+      download.file(paste0("https://github.com/kurokida/jspsych-psychophysics/archive/refs/tags/v",psychophysics_version,".zip"),temp2)
+      unzip(temp2, exdir = paste0(path,"/"))
+      unlink(temp2)
+    }
   }
 }
