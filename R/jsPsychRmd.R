@@ -48,7 +48,7 @@ set_jsPsych <- function (folder = FALSE,
     download.file(paste0("https://github.com/jspsych/jsPsych/releases/download/v",jsPsych_version,"/jspsych-",jsPsych_version,".zip"),temp)
     unzip(temp, exdir = paste0(path,"/"))
     unlink(temp)
-    download.file('https://raw.githubusercontent.com/bestiejs/platform.js/master/platform.js', destfile = file.path(path_jsPsych,"platform.js"), method = "wget")
+    download.file('https://raw.githubusercontent.com/bestiejs/platform.js/master/platform.js', destfile = file.path(path_jsPsych,"platform.js"), method = "curl")
   }
   # make psychophysics directory
   if(psychophysics_version != FALSE){
