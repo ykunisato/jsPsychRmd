@@ -1,7 +1,7 @@
 Package: jsPsychRmd
 Type: Package
 Title: R package for setting the Rmd file and directory for jsPsych
-Version: 0.2.8
+Version: 0.2.9
 Authors@R: c(person("Yoshihiko", "Kunisato", email = "ykunisato@psy.senshu-u.ac.jp", role = c("cre","aut")))
 Author: Yoshihiko Kunisato [aut, cre]
 Maintainer: Yoshihiko Kunisato <ykunisato@psy.senshu-u.ac.jp>
