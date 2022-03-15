@@ -1,5 +1,6 @@
 # jsPsychRmd
 
+## jsPsychRmdは2022/3/15をもって開発を終了しました。jsPsychRmdに含まれている関数は，今後，[psyinfr](https://github.com/ykunisato/psyinfr)パッケージでメンテナンスをする予定です。
 
 jsPsychRmdは，jsPsychをRmarkdownを使って書くための準備をするためのRパッケージです。具体的には，jsPsychで行動課題を作る上で最小構成のスクリプトの入ったRmarkdownテンプレートを準備して，特定のバージョンのjspsychをダウンロードしてフォルダを保存，刺激などをいれるstimuliフォルダを作成します（その他も機能があります）。１行のコードでこれができます。
 
